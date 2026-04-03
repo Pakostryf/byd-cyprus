@@ -30,12 +30,33 @@ export default function Home() {
   };
 
   return (
-    <main style={{ padding: "40px", fontFamily: "Arial" }}>
-      <h1>BYD Cyprus Community</h1>
+    <main style={{ fontFamily: "Arial", color: "#111" }}>
+      
+      {/* HERO */}
+      <section style={{ padding: "80px", textAlign: "center", background: "#f5f5f5" }}>
+        <h1 style={{ fontSize: "40px" }}>BYD Cyprus Community</h1>
+        <p>Events • Community • Accessories</p>
+      </section>
 
-      {/* Add Event */}
-      <section style={{ marginTop: "30px" }}>
+      {/* EVENTS */}
+      <section style={{ padding: "40px" }}>
+        <h2>Upcoming Events</h2>
+
+        <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
+          {events.map((event) => (
+            <div key={event.id} style={{ border: "1px solid #ddd", padding: "20px", width: "250px" }}>
+              <h3>{event.name}</h3>
+              <p>{event.date}</p>
+              <button onClick={() => removeEvent(event.id)}>Remove</button>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ADD EVENT */}
+      <section style={{ padding: "40px", background: "#fafafa" }}>
         <h2>Add Event</h2>
+
         <input
           type="text"
           placeholder="Event Name"
@@ -43,48 +64,41 @@ export default function Home() {
           onChange={(e) => setEventName(e.target.value)}
           style={{ display: "block", marginBottom: "10px" }}
         />
+
         <input
           type="date"
           value={eventDate}
           onChange={(e) => setEventDate(e.target.value)}
           style={{ display: "block", marginBottom: "10px" }}
         />
+
         <button onClick={addEvent}>Add Event</button>
       </section>
 
-      {/* Events List */}
-      <section style={{ marginTop: "40px" }}>
-        <h2>Upcoming Events</h2>
-        {events.length === 0 && <p>No events yet.</p>}
-        <ul>
-          {events.map((event) => (
-            <li key={event.id} style={{ marginBottom: "10px" }}>
-              <strong>{event.name}</strong> - {event.date}
-              <button
-                onClick={() => removeEvent(event.id)}
-                style={{ marginLeft: "10px" }}
-              >
-                Remove
-              </button>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Store Section (Basic UI) */}
-      <section style={{ marginTop: "40px" }}>
+      {/* STORE */}
+      <section style={{ padding: "40px" }}>
         <h2>BYD Accessories Store</h2>
 
-        <div style={{ marginBottom: "20px" }}>
-          <p>BYD Floor Mats - €50</p>
-          <button>Add to Cart</button>
-        </div>
+        <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
+          <div style={{ border: "1px solid #ddd", padding: "20px", width: "250px" }}>
+            <h3>BYD Floor Mats</h3>
+            <p>€50</p>
+            <button>Add to Cart</button>
+          </div>
 
-        <div>
-          <p>BYD Charging Cable - €120</p>
-          <button>Add to Cart</button>
+          <div style={{ border: "1px solid #ddd", padding: "20px", width: "250px" }}>
+            <h3>BYD Charging Cable</h3>
+            <p>€120</p>
+            <button>Add to Cart</button>
+          </div>
         </div>
       </section>
+
+      {/* FOOTER */}
+      <footer style={{ padding: "20px", textAlign: "center", background: "#111", color: "#fff" }}>
+        BYD Cyprus Community © 2026
+      </footer>
+
     </main>
   );
 }
