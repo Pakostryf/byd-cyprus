@@ -31,20 +31,43 @@ export default function Home() {
 
   return (
     <main style={{ fontFamily: "Arial", color: "#111" }}>
-      
+
+      {/* NAVBAR */}
+      <nav
+        style={{
+          padding: "15px 30px",
+          display: "flex",
+          gap: "20px",
+          background: "#111",
+          color: "#fff",
+          position: "sticky",
+          top: 0,
+        }}
+      >
+        <a href="#home" style={{ color: "#fff" }}>Home</a>
+        <a href="#events" style={{ color: "#fff" }}>Events</a>
+        <a href="#store" style={{ color: "#fff" }}>Accessories</a>
+      </nav>
+
       {/* HERO */}
-      <section style={{ padding: "80px", textAlign: "center", background: "#f5f5f5" }}>
+      <section
+        id="home"
+        style={{ padding: "80px", textAlign: "center", background: "#f5f5f5" }}
+      >
         <h1 style={{ fontSize: "40px" }}>BYD Cyprus Community</h1>
         <p>Events • Community • Accessories</p>
       </section>
 
       {/* EVENTS */}
-      <section style={{ padding: "40px" }}>
+      <section id="events" style={{ padding: "40px" }}>
         <h2>Upcoming Events</h2>
 
         <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
           {events.map((event) => (
-            <div key={event.id} style={{ border: "1px solid #ddd", padding: "20px", width: "250px" }}>
+            <div
+              key={event.id}
+              style={{ border: "1px solid #ddd", padding: "20px", width: "250px" }}
+            >
               <h3>{event.name}</h3>
               <p>{event.date}</p>
               <button onClick={() => removeEvent(event.id)}>Remove</button>
@@ -76,7 +99,7 @@ export default function Home() {
       </section>
 
       {/* STORE */}
-      <section style={{ padding: "40px" }}>
+      <section id="store" style={{ padding: "40px" }}>
         <h2>BYD Accessories Store</h2>
 
         <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
@@ -95,10 +118,16 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer style={{ padding: "20px", textAlign: "center", background: "#111", color: "#fff" }}>
+      <footer
+        style={{
+          padding: "20px",
+          textAlign: "center",
+          background: "#111",
+          color: "#fff",
+        }}
+      >
         BYD Cyprus Community © 2026
       </footer>
-
     </main>
   );
 }
