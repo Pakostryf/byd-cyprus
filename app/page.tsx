@@ -1,133 +1,61 @@
-"use client";
-
-import { useState } from "react";
+import Navbar from "./components/Navbar";
+import Events from "./components/Events";
+import Store from "./components/Store";
 
 export default function Home() {
-  const [events, setEvents] = useState([
-    { id: 1, name: "BYD Meetup Nicosia", date: "2026-05-10" },
-    { id: 2, name: "Beach Drive Limassol", date: "2026-06-15" },
-  ]);
-
-  const [eventName, setEventName] = useState("");
-  const [eventDate, setEventDate] = useState("");
-
-  const addEvent = () => {
-    if (!eventName || !eventDate) return;
-
-    const newEvent = {
-      id: Date.now(),
-      name: eventName,
-      date: eventDate,
-    };
-
-    setEvents([...events, newEvent]);
-    setEventName("");
-    setEventDate("");
-  };
-
-  const removeEvent = (id: number) => {
-    setEvents(events.filter((e) => e.id !== id));
-  };
-
   return (
-    <main style={{ fontFamily: "Arial", color: "#111" }}>
+    <>
+      <Navbar />
 
-      {/* NAVBAR */}
-      <nav
-        style={{
-          padding: "15px 30px",
-          display: "flex",
-          gap: "20px",
-          background: "#111",
-          color: "#fff",
-          position: "sticky",
-          top: 0,
-        }}
-      >
-        <a href="#home" style={{ color: "#fff" }}>Home</a>
-        <a href="#events" style={{ color: "#fff" }}>Events</a>
-        <a href="#store" style={{ color: "#fff" }}>Accessories</a>
-      </nav>
-
-      {/* HERO */}
-      <section
-        id="home"
-        style={{ padding: "80px", textAlign: "center", background: "#f5f5f5" }}
-      >
-        <h1 style={{ fontSize: "40px" }}>BYD Cyprus Community</h1>
-        <p>Events • Community • Accessories</p>
-      </section>
-
-      {/* EVENTS */}
-      <section id="events" style={{ padding: "40px" }}>
-        <h2>Upcoming Events</h2>
-
-        <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
-          {events.map((event) => (
-            <div
-              key={event.id}
-              style={{ border: "1px solid #ddd", padding: "20px", width: "250px" }}
-            >
-              <h3>{event.name}</h3>
-              <p>{event.date}</p>
-              <button onClick={() => removeEvent(event.id)}>Remove</button>
+      <main className="flex-1">
+        {/* HERO */}
+        <section
+          id="home"
+          className="relative overflow-hidden border-b border-border"
+        >
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(25,211,162,0.18),transparent_70%)]"
+          />
+          <div className="relative mx-auto max-w-6xl px-5 py-24 text-center sm:py-32">
+            <p className="mx-auto w-fit rounded-full border border-border bg-surface px-3 py-1 text-xs text-muted">
+              Cyprus&apos; community for BYD drivers
+            </p>
+            <h1 className="mt-6 text-4xl font-semibold tracking-tight sm:text-6xl">
+              BYD Cyprus{" "}
+              <span className="text-accent">Community</span>
+            </h1>
+            <p className="mx-auto mt-5 max-w-xl text-lg text-muted">
+              Meet fellow owners, join drives across the island and pick up
+              accessories for your car.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <a
+                href="#events"
+                className="rounded-lg bg-accent px-5 py-3 font-semibold text-accent-ink transition-opacity hover:opacity-90"
+              >
+                See events
+              </a>
+              <a
+                href="#store"
+                className="rounded-lg border border-border px-5 py-3 font-semibold transition-colors hover:bg-surface-2"
+              >
+                Browse accessories
+              </a>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ADD EVENT */}
-      <section style={{ padding: "40px", background: "#fafafa" }}>
-        <h2>Add Event</h2>
-
-        <input
-          type="text"
-          placeholder="Event Name"
-          value={eventName}
-          onChange={(e) => setEventName(e.target.value)}
-          style={{ display: "block", marginBottom: "10px" }}
-        />
-
-        <input
-          type="date"
-          value={eventDate}
-          onChange={(e) => setEventDate(e.target.value)}
-          style={{ display: "block", marginBottom: "10px" }}
-        />
-
-        <button onClick={addEvent}>Add Event</button>
-      </section>
-
-      {/* STORE */}
-      <section id="store" style={{ padding: "40px" }}>
-        <h2>BYD Accessories Store</h2>
-
-        <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
-          <div style={{ border: "1px solid #ddd", padding: "20px", width: "250px" }}>
-            <h3>BYD Floor Mats</h3>
-            <p>€50</p>
-            <button>Add to Cart</button>
           </div>
+        </section>
 
-          <div style={{ border: "1px solid #ddd", padding: "20px", width: "250px" }}>
-            <h3>BYD Charging Cable</h3>
-            <p>€120</p>
-            <button>Add to Cart</button>
-          </div>
-        </div>
-      </section>
+        <Events />
+        <Store />
+      </main>
 
-      {/* FOOTER */}
-      <footer
-        style={{
-          padding: "20px",
-          textAlign: "center",
-          background: "#111",
-          color: "#fff",
-        }}
-      >
-        BYD Cyprus Community © 2026
+      <footer className="border-t border-border px-5 py-8 text-center text-sm text-muted">
+        <p>BYD Cyprus Community &copy; {new Date().getFullYear()}</p>
+        <p className="mt-1 text-xs">
+          An unofficial fan community, not affiliated with BYD.
+        </p>
       </footer>
-    </main>
+    </>
   );
 }
