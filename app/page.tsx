@@ -2,6 +2,9 @@ import Navbar from "./components/Navbar";
 import Events from "./components/Events";
 import Store from "./components/Store";
 
+// Re-render hourly so finished events move to "Past events" without a redeploy.
+export const revalidate = 3600;
+
 export default function Home() {
   return (
     <>

@@ -5,9 +5,12 @@ A small community site for BYD owners and fans in Cyprus: upcoming events and an
 ## Features
 
 - Responsive layout with a mobile menu
-- Events list sorted by date, with past events tucked away, plus an "Add event" form
-- Accessories store with a cart (quantities, totals)
-- Events and cart are saved in the browser (localStorage)
+- Events list sorted by date, with past events tucked away
+- Accessories store with a cart (quantities, totals), saved in the browser (localStorage)
+
+## Managing events
+
+Only the site owner edits events. Open `app/data/events.ts`, add or change an entry, then commit and push; Vercel redeploys automatically.
 
 ## Getting started
 
@@ -28,6 +31,7 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Project structure
 
 - `app/page.tsx` page layout and hero
+- `app/data/events.ts` the list of events (edit this to add events)
 - `app/components/` Navbar, Events and Store
 - `app/lib/useLocalStorage.ts` small persistence hook
 - `app/globals.css` theme colours and base styles
@@ -35,4 +39,4 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Next steps
 
 - Add real products to `PRODUCTS` in `app/components/Store.tsx`
-- Connect events and checkout to a backend (events are currently per-browser)
+- Connect checkout to a backend (the cart is currently per-browser)
